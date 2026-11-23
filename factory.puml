@@ -1,0 +1,38 @@
+@startuml
+title Factory Method: создание вагона
+
+interface Wagon {
+  +description() : String
+  +capacityTons() : double
+}
+
+abstract class WagonCreator {
+  +createWagon(capacityTons) : Wagon
+}
+
+class CoveredWagon
+class Platform
+class TankWagon
+class HopperWagon
+
+class CoveredWagonCreator
+class PlatformCreator
+class TankWagonCreator
+class HopperWagonCreator
+
+Wagon <|.. CoveredWagon
+Wagon <|.. Platform
+Wagon <|.. TankWagon
+Wagon <|.. HopperWagon
+
+WagonCreator <|-- CoveredWagonCreator
+WagonCreator <|-- PlatformCreator
+WagonCreator <|-- TankWagonCreator
+WagonCreator <|-- HopperWagonCreator
+
+CoveredWagonCreator ..> CoveredWagon : создаёт
+PlatformCreator ..> Platform : создаёт
+TankWagonCreator ..> TankWagon : создаёт
+HopperWagonCreator ..> HopperWagon : создаёт
+WagonCreator ..> Wagon : возвращает
+@enduml
