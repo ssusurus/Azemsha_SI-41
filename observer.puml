@@ -1,0 +1,26 @@
+@startuml
+title Observer: оповещение о прибытии поезда
+
+interface ArrivalListener {
+  +onTrainArrived(stationName, trainNumber) : void
+}
+
+class Station {
+  -stationName : String
+  -listeners : List<ArrivalListener>
+  +addListener(listener) : void
+  +removeListener(listener) : void
+  +trainArrived(trainNumber) : void
+}
+
+class BoardListener
+class JournalListener
+class MailingListener
+class AsuListener
+
+Station o--> ArrivalListener : оповещает
+ArrivalListener <|.. BoardListener
+ArrivalListener <|.. JournalListener
+ArrivalListener <|.. MailingListener
+ArrivalListener <|.. AsuListener
+@enduml
